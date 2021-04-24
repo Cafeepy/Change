@@ -154,7 +154,7 @@ def next_day():
         eel.end(day, budget, population, total_spent, total_emissions, True) # True for win
         return
     day += 1
-    population += (main.infra.output/10)-round(emissions_today/5)
+    population += round(main_infra.output/100)-(emissions_today)
     if population <= 0:
         eel.end(day, budget, population, total_spent, total_emissions, False) # False for loss
         return
@@ -163,11 +163,31 @@ def next_day():
     population += population_change
     carbon = emissions_today
     emissions_today = 0
-    return [day, budget, population, population_change, carbon]
+    return [day, budget, population, population_change, carbon, total_emissions]
+
+@eel.expose
+def get_info():
+    return [day, budget, population, 0, main_power.emissions+main_infra.emissions+emissions_today, total_emissions]
+
+@eel.expose
+def buy(x : int, y : int, item_id : int):
+    if item_id < 10:
+      main_power.assets[item_id].buy(x, y)
+    else:
+      main_infra.assets[item_id-10].buy(x, y)
+
+@eel.expose
+def shop():
+  shopper = []
+  for asset in main_power.assets:
+    shopper.append([asset.base_output, asset.base_emissions, asset.cost, asset.env_cost, asset.type, asset.amount, asset.desc,asset.id, asset.emissions, asset.output])
+  for asset in main_infra.assets:
+    shopper.append([asset.base_output, asset.base_emissions, asset.cost, asset.env_cost, asset.type, asset.amount, asset.desc,asset.id, asset.emissions, asset.output])
+  return shopper
 
 @eel.expose
 def get_carbon():
-    return main_power.emissions
+    return main_power.emissions+main_infra.emissions+emissions_today
 
 @eel.expose
 def get_output():
@@ -178,11 +198,19 @@ def get_population():
     return population
 
 @eel.expose
+def get_budget():
+    return budget
+
+@eel.expose
 def get_day():
     return day
 
 @eel.expose
 def get_grid():
+    return grid
+
+@eel.expose
+def get_total_emissions():
     return grid
 
 @eel.expose
@@ -192,11 +220,11 @@ def get_tile(x : int, y : int): # return int
 @eel.expose
 def get_source(source : int): # power sources
     target = main_power.assets[int(source)]
-    return [target.base_output, target.base_emissions, target.cost, target.env_cost, target.type, target.amount, target.desc, target.emissions, target.output]
+    return [target.base_output, target.base_emissions, target.cost, target.env_cost, target.type, target.amount, target.desc, target.id, target.emissions, target.output]
 
 @eel.expose
 def get_amenity(amenity_id : int):
     target = main_infra.assets[int(amenity_id)-10]
-    return [target.base_output, target.base_emissions, target.cost, target.env_cost, target.type, target.amount, target.desc, target.emissions, target.output]
+    return [target.base_output, target.base_emissions, target.cost, target.env_cost, target.type, target.amount, target.desc, target.id, target.emissions, target.output]
 
 eel.start('index.html')  # must be after all other @eel decorators
