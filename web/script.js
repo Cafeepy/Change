@@ -98,7 +98,6 @@ async function start() {
 async function nextDay() {
     let info = await eel.next_day()();
     let scrollinginfo = document.getElementById('scrollingInfo');
-    // day, budget, population, population_change, carbon
     scrollinginfo.innerHTML = `${gameinfo.name} | Day: ${info[0]} Budget: $${info[1]} Citizens: ${info[2]} Daily Emissions: ${info[4]} Total Emissions ${info[5]}`;
 }
 
