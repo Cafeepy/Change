@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Change!</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type='text/javascript' src='script.js'></script>
+    <link rel="stylesheet" href="style.css" type='text/css'>
+</head>
+
+<body>
+  <form id='startForm'>
+    <label for='startInput'>Enter the name of your city:</label><br>
+    <input type='text' id='startInput'></input>
+    <input type='submit'></input>
+  </form>
+    <table id='fullTable' style='display:none'>
+        <tr>
+            <td id='infobar' colspan="3">
+                <marquee id='scrollingInfo'></marquee>
+            </td>
+        </tr>
+        <tr>
+            <td id='social-media'>
+                <div id=scrollDiv>
+                    placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+                    placeholder placeholder placeholder placeholder placeholder placeholder placeholder
+                </div>
+            </td>
+            <td id='mainMap'>
+                <table id='mapTable'></table>
+            </td>
+            <td id='actions'>
+                <table id='actionTable'>
+                    <tr>
+                        <td id='actionDesc'></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td id='inspect-panel' colspan="3">
+                <table id='inspectTable'></table>
+            </td>
+        </tr>
+        <tr>
+            <td id='next-day' colspan="3">
+                <button id='nextDay'>Advance to Next Day</button>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
