@@ -100,7 +100,7 @@ async function nextDay() {
     let info=await eel.next_day()();
     let scrollinginfo = document.getElementById('scrollingInfo');
     // day, budget, population, population_increase
-    scrollinginfo.innerHTML = `${gameinfo.name} | Day: ${info[0]} Budget: ${info[1]} Citizens: ${info[2]} Carbon: 0`;
+    scrollinginfo.innerHTML = `${gameinfo.name} | Day: ${info[0]} Budget: ${info[1]} Citizens: ${info[2]} Carbon: ${info[4]}`;
 }
 
 async function actionClick(row, col) {

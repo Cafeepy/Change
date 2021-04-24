@@ -154,15 +154,16 @@ def next_day():
         eel.end(day, budget, population, total_spent, total_emissions, True) # True for win
         return
     day += 1
-    population -= round(main_power.emissions/10)
+    population += (main.infra.output/10)-round(emissions_today/5)
     if population <= 0:
         eel.end(day, budget, population, total_spent, total_emissions, False) # False for loss
         return
-    budget += population
+    budget += population+random.randint(-100000,100000)
     population_change = (population//random.randint(850, 1150))
     population += population_change
+    carbon = emissions_today
     emissions_today = 0
-    return [day, budget, population, population_change, city_name]
+    return [day, budget, population, population_change, carbon]
 
 @eel.expose
 def get_carbon():
