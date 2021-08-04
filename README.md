@@ -3,10 +3,10 @@ Change! is a lightweight strategic game where you can play as a city's mayor. Wi
 
 
 I should probably also note that:
-- a) the game isn't actually finished,
-- b) the game isn't actually balanced either,
-- c) the game is rather sloppy, and
-- d) the game probably doesn't work.
+- the game isn't actually finished,
+- the game isn't actually balanced either,
+- the game is rather sloppy, and
+- the game probably doesn't work.
 
 
 Thanks for checking it out anyways! Feel free to steal the idea if it's even worth stealing, I hope you can make a better version.
